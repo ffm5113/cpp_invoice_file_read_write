@@ -102,7 +102,6 @@ int main()
 	fout.close();
 }
 // Function definitions
-
 double calculateCost(int quantity, double unitCost)
 {
 	return quantity * unitCost;
