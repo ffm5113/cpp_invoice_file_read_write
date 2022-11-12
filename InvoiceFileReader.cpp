@@ -44,18 +44,9 @@ int main()
 	double invoiceCost = 0;
 	double totalCost = 0;
 
-	// File path for input.txt
-	string txtFilePath = "C:\\Users\\Forrest\\";
-	txtFilePath += "OneDrive - The Pennsylvania State University\\";
-	txtFilePath += "5_Penn_State\\6_Software_Engineering\\2022-3_Fall\\";
-	txtFilePath += "CMPSC 121 - Introduction to Programming Techniques\\";
-	txtFilePath += "Assignments\\119input.txt";
-
-	string outFilePath = "C:\\Users\\Forrest\\";
-	outFilePath += "OneDrive - The Pennsylvania State University\\";
-	outFilePath += "5_Penn_State\\6_Software_Engineering\\2022-3_Fall\\";
-	outFilePath += "CMPSC 121 - Introduction to Programming Techniques\\";
-	outFilePath += "Assignments\\119output.txt";
+	// File paths for input/output.txt
+	string txtFilePath = "C:\\Users\\UserName\\Path\\To\\input.txt"
+	string outFilePath = "C:\\Users\\UserName\\Path\\To\\output.txt"
 
 	// Program Logic
 	// Use the txt/output file paths as arg s
@@ -73,9 +64,6 @@ int main()
 		<< PROG_TITLE << endl
 		<< AUTHOR_LINE << endl << endl;
 	printReportHeader();
-
-
-
 
 	// End program in event of file loading failure
 	if (fin.fail())
@@ -95,8 +83,6 @@ int main()
 		fout.close();
 		return 0;
 	}
-
-
 	// While the input file stream contains items int and date string on a line
 	while (fin >> items >> date)
 	{
