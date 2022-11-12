@@ -1,5 +1,5 @@
 # cpp_invoice_file_read_write
-The Invoice File Read/Write Program (C++) reads invoice details from a .txt file, printing a detailed list of the invoices and their calculated total costs. An output file named output.txt is created to mirror the console output.
+The Invoice File Read/Write Program (C++) reads invoice details from a .txt file (input.txt), printing a detailed list of the invoices and their calculated total costs. An output file named output.txt is created to mirror the console output.
 
 Exception handling: if there is an error reading the file, the program prints an error message and exits.
 
