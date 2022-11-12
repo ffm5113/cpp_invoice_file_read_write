@@ -17,7 +17,7 @@ const string AUTHOR_LINE = "By Forrest Moulin";
 double calculateCost(int quantity, double unitCost);
 double accumulateCost(double totalCost, double itemCost);
 void printLine(string itemNum, string name, int quantity, 
-	double unitCost);
+	double unitCost, double totalCost);
 void printInvoiceHeader(string date, int invNumber);
 void printReportHeader();
 void printTotal(double invoiceTotal);
@@ -43,11 +43,7 @@ int main()
 	double totalCost = 0;
 
 	// File path for input.txt
-	string txtFilePath = "C:\\Users\\Forrest\\";
-	txtFilePath += "OneDrive - The Pennsylvania State University\\";
-	txtFilePath += "5_Penn_State\\6_Software_Engineering\\2022-3_Fall\\";
-	txtFilePath += "CMPSC 121 - Introduction to Programming Techniques\\";
-	txtFilePath += "Assignments\\119input.txt";
+	string txtFilePath = "C:\\Users\\UserName\\Path\\To\\input.txt"
 	
 	// Program Logic
 	cout << fixed << setprecision(2) 
@@ -84,7 +80,7 @@ int main()
 			// Add each calculated item cost to the invoice cost
 			invoiceCost = accumulateCost(invoiceCost, calculateCost(quantity, unitCost));
 			// Print the details for each item
-			printLine(itemNumber, itemName, quantity, unitCost);
+			printLine(itemNumber, itemName, quantity, unitCost, calculateCost(quantity, unitCost));
 		}
 		// Visibility of system status/calculations
 		printTotal(invoiceCost);
@@ -112,12 +108,12 @@ double accumulateCost(double invoiceCost, double itemCost)
 }
 
 void printLine(string itemNum, string itemName, int quantity,
-	double unitCost)
+	double unitCost, double totalCost)
 {
 	cout << left << setw(9) << itemNum
 		<< left << setw(12) << itemName
-		<< left << setw(8) << quantity << "$ " << left << setw(8)
-		<< unitCost << endl;
+		<< left << setw(6) << quantity << "$ " << left << setw(8)
+		<< unitCost << "$" << right << setw(10) << totalCost << endl;
 }
 
 void printInvoiceHeader(string date, int invNumber)
@@ -134,15 +130,15 @@ void printReportHeader()
 
 void printTotal(double invoiceTotal)
 {
-	cout << endl << "Total Invoice Cost:" << setw(10) << " " << "$ "
-		<< invoiceTotal << endl;
+	cout << endl << "Total Invoice Cost:" << setw(18) << " " << "$"
+		<< right << setw(10) << invoiceTotal << endl;
 }
 
 void printDivider()
 {
 	// Creates divider of length 28 with '-' char
 	// Then resets so that fill char is not fixed as '-'
-	cout << setw(40) << setfill('-') << "" << setfill(' ') << "" << endl;
+	cout << setw(48) << setfill('-') << "" << setfill(' ') << "" << endl;
 }
 /* 
 * INPUT.TXT FILE USED
@@ -180,51 +176,43 @@ void printDivider()
 * CONSOLE OUTPUT
 * Invoice File Reader Program
 * By Forrest Moulin
-*
+* 
 * Forrest's Green Industries
-* ----------------------------------------
+* ------------------------------------------------
 * Invoice # 1 Date:    2/12/2017
-* 134276   Framis-R    8       $ 7.35
-* 125790   Framis-L    12      $ 15.76
-* 100086   Aglet       395     $ 0.11
+* 134276   Framis-R    8     $ 7.35    $     58.80
+* 125790   Framis-L    12    $ 15.76   $    189.12
+* 100086   Aglet       395   $ 0.11    $     43.45
 *
-* Total Invoice Cost:          $ 291.37
-* ----------------------------------------
+* Total Invoice Cost:                  $    291.37
+* ------------------------------------------------
 * Invoice # 2 Date:    1/23/2017
-* 135876   Wrench      12      $ 22.50
-* 543287   Henway      4       $ 19.25
+* 135876   Wrench      12    $ 22.50   $    270.00
+* 543287   Henway      4     $ 19.25   $     77.00
 *
-* Total Invoice Cost:          $ 347.00
-* ----------------------------------------
+* Total Invoice Cost:                  $    347.00
+* ------------------------------------------------
 * Invoice # 3 Date:    1/15/2017
-* 161432   Widget      5       $ 6.50
-* 543289   Wodget      10      $ 2.25
-* 876234   Gadget      2       $ 10.75
+* 161432   Widget      5     $ 6.50    $     32.50
+* 543289   Wodget      10    $ 2.25    $     22.50
+* 876234   Gadget      2     $ 10.75   $    110.70
 *
-* Total Invoice Cost:          $ 76.50
-* ----------------------------------------
-* Invoice # 4 Date:    2/16/2017
-* 198765   Corkle      2       $ 12.18
-* 107654   Swale       3       $ 8.75
-* 987987   Sinter      5       $ 6.43
-* 654821   Zangle      6       $ 18.45
-* 432165   Lunule      7       $ 9.60
-* 333221   Fangle      10      $ 58.49
-* 654098   Fwetstock   3       $ 12.65
-* 543210   Furnal      3       $ 9.98
-* 543287   Bobble      12      $ 19.25
+* 333221   Fangle      10    $ 58.49   $    584.90
+* 654098   Fwetstock   3     $ 12.65   $     37.95
+* 543210   Furnal      3     $ 9
+* 543287   Bobble      12    $ 19.25   $    231.00
 *
-* Total Invoice Cost:          $ 1144.45
-* ----------------------------------------
+* Total Invoice Cost:                  $   1144.45
+* ------------------------------------------------
 * Invoice # 5 Date:    2/26/2017
-* 654821   Muntin      2       $ 18.45
-* 766443   Finwiddie   9       $ 2.22
-* 120980   Ferkle      100     $ 0.12
-* 123222   Sneedooper  700     $ 1.19
-* 876543   Ferrule     2       $ 345.77
-* 877721   Uberfrock   14      $ 88.93
+* 654821   Muntin      2     $ 18.45   $     36.90
+* 766443   Finwiddie   9     $ 2.22    $     19.98
+* 120980   Ferkle      100   $ 0.12    $     12.00
+* 123222   Sneedooper  700   $ 1.19    $    833.00
+* 876543   Ferrule     2     $ 345.77  $    691.54
+* 877721   Uberfrock   14    $ 88.93   $   1245.02
 *
-* Total Invoice Cost:          $ 2838.44
-* ----------------------------------------
+* Total Invoice Cost:                  $   2838.44
+* ------------------------------------------------
 * Total Cost: $ 4697.76
 */
