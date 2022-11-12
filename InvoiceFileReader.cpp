@@ -87,8 +87,7 @@ int main()
 			printLine(itemNumber, itemName, quantity, unitCost);
 		}
 		// Visibility of system status/calculations
-		cout << endl << "Total Invoice Cost:" << setw(10) << " " << "$ "
-			<< invoiceCost << endl;
+		printTotal(invoiceCost);
 		// Track total cost of all invoices
 		totalCost += invoiceCost;
 		// Track number of invoices read
@@ -135,8 +134,8 @@ void printReportHeader()
 
 void printTotal(double invoiceTotal)
 {
-	cout << "Invoice total: " << invoiceTotal
-		<< endl << endl;
+	cout << endl << "Total Invoice Cost:" << setw(10) << " " << "$ "
+		<< invoiceTotal << endl;
 }
 
 void printDivider()
