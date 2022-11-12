@@ -16,7 +16,7 @@ const string AUTHOR_LINE = "By Forrest Moulin";
 // (similar format to Java interface methods)
 double calculateCost(int quantity, double unitCost);
 double accumulateCost(double totalCost, double itemCost);
-void printLine(string itemNum, string name, int quantity, 
+void printLine(string itemNum, string name, int quantity,
 	double unitCost, double totalCost);
 void printInvoiceHeader(string date, int invNumber);
 void printReportHeader();
@@ -24,6 +24,8 @@ void printTotal(double invoiceTotal);
 void printDivider();
 
 // Create output file stream object
+// cout used for debugging/console
+// fout used to print text to output file
 ofstream fout;
 
 int main()
@@ -43,17 +45,37 @@ int main()
 	double totalCost = 0;
 
 	// File path for input.txt
-	string txtFilePath = "C:\\Users\\UserName\\Path\\To\\input.txt"
-	
+	string txtFilePath = "C:\\Users\\Forrest\\";
+	txtFilePath += "OneDrive - The Pennsylvania State University\\";
+	txtFilePath += "5_Penn_State\\6_Software_Engineering\\2022-3_Fall\\";
+	txtFilePath += "CMPSC 121 - Introduction to Programming Techniques\\";
+	txtFilePath += "Assignments\\119input.txt";
+
+	string outFilePath = "C:\\Users\\Forrest\\";
+	outFilePath += "OneDrive - The Pennsylvania State University\\";
+	outFilePath += "5_Penn_State\\6_Software_Engineering\\2022-3_Fall\\";
+	outFilePath += "CMPSC 121 - Introduction to Programming Techniques\\";
+	outFilePath += "Assignments\\119output.txt";
+
 	// Program Logic
-	cout << fixed << setprecision(2) 
+	// Use the txt/output file paths as arg s
+	// to open the input/output stream file objects
+	fin.open(txtFilePath);
+	fout.open(outFilePath);
+
+	// Console visibility
+	cout << fixed << setprecision(2)
+		<< PROG_TITLE << endl
+		<< AUTHOR_LINE << endl << endl;
+
+	// Print to output file
+	fout << fixed << setprecision(2)
 		<< PROG_TITLE << endl
 		<< AUTHOR_LINE << endl << endl;
 	printReportHeader();
-	
-	// Use the txt file path as arg 
-	// to open the read file object
-	fin.open(txtFilePath);
+
+
+
 
 	// End program in event of file loading failure
 	if (fin.fail())
@@ -64,6 +86,16 @@ int main()
 		fout.close();
 		return 0;
 	}
+
+	if (fout.fail())
+	{
+		cout << "File output failure:" << endl
+			<< outFilePath << endl;
+		fin.close();
+		fout.close();
+		return 0;
+	}
+
 
 	// While the input file stream contains items int and date string on a line
 	while (fin >> items >> date)
@@ -90,10 +122,11 @@ int main()
 		numInvoices++;
 		printDivider();
 	}
-	cout << "Total Cost: $ " << totalCost
-		<< endl;
+	cout << "Total Cost: $ " << totalCost << endl;
+	fout << "Total Cost: $ " << totalCost << endl;
 	// Close file input/output streams upon completion
 	fin.close();
+	cout << endl << "Output file created successfully!" << endl;
 	fout.close();
 }
 // Function definitions
@@ -114,17 +147,26 @@ void printLine(string itemNum, string itemName, int quantity,
 		<< left << setw(12) << itemName
 		<< left << setw(6) << quantity << "$ " << left << setw(8)
 		<< unitCost << "$" << right << setw(10) << totalCost << endl;
+
+	fout << left << setw(9) << itemNum
+		<< left << setw(12) << itemName
+		<< left << setw(6) << quantity << "$ " << left << setw(8)
+		<< unitCost << "$" << right << setw(10) << totalCost << endl;
 }
 
 void printInvoiceHeader(string date, int invNumber)
 {
 	cout << "Invoice # " << invNumber << " Date:    " << date
 		<< endl;
+
+	fout << "Invoice # " << invNumber << " Date:    " << date
+		<< endl;
 }
 
 void printReportHeader()
 {
 	cout << REPORT_TITLE << endl;
+	fout << REPORT_TITLE << endl;
 	printDivider();
 }
 
@@ -139,8 +181,9 @@ void printDivider()
 	// Creates divider of length 28 with '-' char
 	// Then resets so that fill char is not fixed as '-'
 	cout << setw(48) << setfill('-') << "" << setfill(' ') << "" << endl;
+	fout << setw(48) << setfill('-') << "" << setfill(' ') << "" << endl;
 }
-/* 
+/*
 * INPUT.TXT FILE USED
 * 3 2/12/2017
 * 134276 Framis-R 8 7.35
@@ -172,11 +215,11 @@ void printDivider()
 * 877721 Uberfrock 14 88.93
 */
 
-/* 
-* CONSOLE OUTPUT
+/*
+* CONSOLE OUTPUT/OUTPUT FILE output.txt
 * Invoice File Reader Program
 * By Forrest Moulin
-* 
+*
 * Forrest's Green Industries
 * ------------------------------------------------
 * Invoice # 1 Date:    2/12/2017
@@ -215,4 +258,6 @@ void printDivider()
 * Total Invoice Cost:                  $   2838.44
 * ------------------------------------------------
 * Total Cost: $ 4697.76
+* 
+* Output file created successfully!
 */
