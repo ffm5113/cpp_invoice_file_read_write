@@ -13,7 +13,7 @@ const string REPORT_TITLE = "Forrest's Green Industries";
 const string AUTHOR_LINE = "By Forrest Moulin";
 
 // Function prototypes to notify compiler
-// (similar format to Java interface methods)
+// (similar syntax to Java interface methods)
 double calculateCost(int quantity, double unitCost);
 double accumulateCost(double totalCost, double itemCost);
 void printLine(string itemNum, string name, int quantity,
