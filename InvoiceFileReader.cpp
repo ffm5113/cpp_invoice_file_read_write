@@ -202,7 +202,7 @@ void printDivider()
 */
 
 /*
-* CONSOLE OUTPUT/OUTPUT FILE output.txt
+* CONSOLE OUTPUT/OUTPUT FILE OUTPUT.TXT
 * Invoice File Reader Program
 * By Forrest Moulin
 *
