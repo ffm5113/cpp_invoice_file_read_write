@@ -45,8 +45,8 @@ int main()
 	double totalCost = 0;
 
 	// File paths for input/output.txt
-	string txtFilePath = "C:\\Users\\UserName\\Path\\To\\input.txt"
-	string outFilePath = "C:\\Users\\UserName\\Path\\To\\output.txt"
+	string txtFilePath = "C:\\Users\\UserName\\Path\\To\\input.txt";
+	string outFilePath = "C:\\Users\\UserName\\Path\\To\\output.txt";
 
 	// Program Logic
 	// Use the txt/output file paths as arg s
